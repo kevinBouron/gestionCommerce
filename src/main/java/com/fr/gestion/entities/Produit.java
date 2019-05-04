@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Produit implements Serializable{
 	@Id
 	@GeneratedValue
-	private long code;
+	private Long code;
 	private String modele;
 	private String fabricant;
 	private String couleur;
