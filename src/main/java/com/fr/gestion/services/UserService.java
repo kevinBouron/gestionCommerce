@@ -1,5 +1,17 @@
 package com.fr.gestion.services;
 
-public class UserService {
+import javax.transaction.Transactional;
 
+import org.springframework.stereotype.Service;
+
+@Service
+@Transactional
+public class UserService implements IUserService{
+	
+	
+
+	
+	
+	
+	
 }
