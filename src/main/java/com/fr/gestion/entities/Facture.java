@@ -2,6 +2,7 @@ package com.fr.gestion.entities;
 
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-public class Facture {
+public class Facture implements Serializable {
 
 
 	@Id @GeneratedValue
@@ -33,8 +34,8 @@ public class Facture {
 	private float remise;
 	
 
-	private int quantité;
-	private float prixUnitaireHT;
+	
+	
 	private float fraisdeport;
 	private float tva;
 	private float BaseHT;
@@ -46,5 +47,5 @@ public class Facture {
 	private float restedu;
 	
 	@OneToOne
-	Commande commande;
+	private Commande commande;
 }

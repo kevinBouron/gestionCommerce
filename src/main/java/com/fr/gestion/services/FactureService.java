@@ -3,9 +3,8 @@ package com.fr.gestion.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
-import com.fr.gestion.DAO.FactureDao;
 import com.fr.gestion.DAO.IFactureDao;
 import com.fr.gestion.entities.Facture;
 
@@ -16,47 +15,53 @@ public class FactureService implements IFactureService {
 	
 	@Autowired
 	private IFactureDao factureDao;
-	
 
-	
+	@Override
+	public float CalculMontantTVA(Facture f) {
+		float taux = 0.20f;
+		float montantTVA= CalculBaseHT(f)*taux;
+		return montantTVA;
+	}
+
+	@Override
+	public float CalculMontantTTC(Facture f) {
+		// TODO Auto-generated method stub
+		float TTC= CalculBaseHT(f)+CalculMontantTVA(f);
+		return TTC;
+	}
+
+	@Override
+	public float CalculBaseHT(Facture f) {
+		// TODO Auto-generated method stub
+		return f.getCommande()*f.getCommande() ; //selectionner la qtite et le produit du prix dans commande puis get lis
+	}
+
+	@Override
+	public float Restedu(Facture f) {
+		// TODO Auto-generated method stub
+		return MontantRemise(f) - accompte(f);
+	}
+
+	@Override
+	public float MontantRemise(Facture f) {
+		// TODO Auto-generated method stub
+		float tauxRemise= 0.05f; // pourcentage de remise
+		float prixRemis = CalculMontantTTC(f)*tauxRemise; // la remise 
+		float prixFinal = CalculMontantTTC(f) - prixRemis; // prix apres remise
+		return prixFinal;
+	}
+
+	@Override
+	public float accompte(Facture f) {
+		// TODO Auto-generated method stub
+		float tauxAccompte= 0.4f; // pourcentage accompte
+		float accompte= MontantRemise(f)*tauxAccompte;
+		return accompte;
+	}
+
 	@Override
 	public Facture findOneById(Long id) {
 		// TODO Auto-generated method stub
-
-		return factureDao.findOneById(id);
-	}
-
-	@Override
-	public Facture save(Facture f) {
-		// TODO Auto-generated method stub
-		return factureDao.save(f);
-	}
-
-	@Override
-	public void delete(Facture f) {
-		factureDao.delete(f);
-		
-	}
-
-	@Override
-	public List<Facture> getAll() {
-		
-		return factureDao.findAll();
-	}
-
-	float CalculMontantTVA() {
-		return dao.CalculMontantTVA();
-		
-	};
-	float CalculMontantTTC() {
-		return dao.CalculMontantTTC();
-		
-	};
-	float CalculBaseHT() {
-		return dao.CalculBaseHT();
-		
-	};
-
 		return factureDao.getOne(id);
 	}
 
@@ -77,42 +82,8 @@ public class FactureService implements IFactureService {
 		// TODO Auto-generated method stub
 		return factureDao.findAll();
 	}
+	
 
-	@Override
-	public Float totalHTRemise() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Float totalTVA() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Float totalHTnet() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Float totalTTC() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Float accompte() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Float netAPayer() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 
 }

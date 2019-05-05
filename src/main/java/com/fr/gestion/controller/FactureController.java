@@ -46,4 +46,48 @@ public class FactureController {
 	public List<Facture> getAll() {
 		return factureS.getAll();
 	}
+	
+	@PostMapping("/api/CalculMontantTVA/{id}")
+	public float CalculMontantTVA(@PathVariable Long id) {
+		Facture f = findOneById(id);
+		return factureS.CalculMontantTVA(f);
+
+	}
+	
+	@PostMapping("/api/CalculMontantTTC/{id}")
+	public float CalculMontantTTC(@PathVariable Long id) {
+		Facture f = findOneById(id);
+		return factureS.CalculMontantTTC(f);
+
+	}
+	
+	@PostMapping("/api/MontantRemise/{id}")
+	public float MontantRemise(@PathVariable Long id) {
+		Facture f = findOneById(id);
+		return factureS.MontantRemise(f);
+
+	}
+	
+	@PostMapping("/api/Restedu/{id}")
+	public float Restedu(@PathVariable Long id) {
+		Facture f = findOneById(id);
+		return factureS.Restedu(f);
+
+	}
+	
+	@PostMapping("/api/CalculBaseHT/{id}")
+	public float CalculBaseHT(@PathVariable Long id) {
+		Facture f = findOneById(id);
+		return factureS.CalculBaseHT(f);
+
+	}
+	
+	@PostMapping("/api/accompte/{id}")
+	public float accompte(@PathVariable Long id) {
+		Facture f = findOneById(id);
+		return factureS.accompte(f);
+
+	}
+	
+	
 }

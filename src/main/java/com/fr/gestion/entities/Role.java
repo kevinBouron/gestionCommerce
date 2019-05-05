@@ -25,45 +25,7 @@ public class Role implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long IdRole;
 	private String roleName;
-	@ManyToOne(cascade=CascadeType.MERGE)
-	@JoinColumn(name="ID_USER")
-	private User user;
-	
-	
-	
-	public Role(String roleName, User user) {
-		this.roleName = roleName;
-		this.user = user;
-	}
-	
-	
-	
-	public Role() {
-			}
 
-
-
-	public long getIdRole() {
-		return IdRole;
-	}
-	public void setIdRole(long idRole) {
-		IdRole = idRole;
-	}
-	public String getRoleName() {
-		return roleName;
-	}
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
-	
-	
-	
+		
 
 }
