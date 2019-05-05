@@ -31,7 +31,7 @@ public class FactureService implements IFactureService{
 		factureDao.delete(f);
 		
 	}
-
+//
 	@Override
 	public List<Facture> getAll() {
 		
