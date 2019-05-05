@@ -1,6 +1,7 @@
 package com.fr.gestion.entities;
 
 
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -19,6 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 public class Facture {
+
 
 	@Id @GeneratedValue
 	private Long codeFacture;
