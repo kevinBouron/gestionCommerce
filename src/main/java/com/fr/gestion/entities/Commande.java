@@ -33,5 +33,5 @@ public class Commande {
 	
 
 	@ManyToOne
-	private List<Produit> produit;
+	private List<Produit> produits;
 }
