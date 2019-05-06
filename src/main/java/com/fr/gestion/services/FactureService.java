@@ -33,7 +33,7 @@ public class FactureService implements IFactureService {
 	@Override
 	public float CalculBaseHT(Facture f) {
 		// TODO Auto-generated method stub
-		return f.getCommande()*f.getCommande() ; //selectionner la qtite et le produit du prix dans commande puis get lis
+		return f.getCommande()*f.getCommande()  ; //selectionner la qtite et le produit du prix dans commande puis get lis
 	}
 
 	@Override
