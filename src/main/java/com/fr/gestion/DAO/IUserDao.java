@@ -6,4 +6,8 @@ import com.fr.gestion.entities.User;
 
 public interface IUserDao extends JpaRepository<User, Long> {
 
+	
+	
 }
+
+

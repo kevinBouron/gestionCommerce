@@ -16,6 +16,7 @@ public class GestionCommerceApplication {
 		
 		Produit p1 = new Produit(null,"modele1","fab","bleu",50);
 		produitDao.save(p1);
+		
 	}
 
 }
