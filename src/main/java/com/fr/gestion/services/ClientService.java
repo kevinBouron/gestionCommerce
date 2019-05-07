@@ -18,6 +18,10 @@ public class ClientService implements IClientService{
 
 	@Autowired
 	IClientDao dao;
+	
+	public Client update(Client client) {
+		return dao.save(client);
+	}
 
 	@Override
 	public Client findOneById(Long id) {
