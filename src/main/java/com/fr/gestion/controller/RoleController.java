@@ -10,40 +10,40 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fr.gestion.entities.User;
-import com.fr.gestion.services.IUserService;
+import com.fr.gestion.entities.Role;
+import com.fr.gestion.services.IRoleService;
 
 @RestController
-public class UserController {
+public class RoleController {
 
 	
 	@Autowired
-	private IUserService UserS;
+	private IRoleService RoleS;
 	
 	
 
-	@GetMapping("/User/get/{id}")
-	public User findOneById(@PathVariable Long id) {
+	@GetMapping("/Role/get/{id}")
+	public Role findOneById(@PathVariable Long id) {
 
-		return UserS.findOneById(id);
-
-	}
-
-	@PostMapping("/User/save")
-	public User save(@RequestBody User p) {
-
-		return UserS.save(p);
+		return RoleS.findOneById(id);
 
 	}
 
-	@DeleteMapping("/User/delete")
-	public void delete(@RequestBody User p) {
+	@PostMapping("/Role/save")
+	public Role save(@RequestBody Role p) {
 
-		UserS.delete(p);
+		return RoleS.save(p);
+
 	}
 
-	@GetMapping("/User/getall")
-	public List<User> getAll() {
-		return UserS.getAll();
+	@DeleteMapping("/Role/delete")
+	public void delete(@RequestBody Role p) {
+
+		RoleS.delete(p);
+	}
+
+	@GetMapping("/Role/getall")
+	public List<Role> getAll() {
+		return RoleS.getAll();
 	}
 }

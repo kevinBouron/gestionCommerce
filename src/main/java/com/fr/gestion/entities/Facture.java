@@ -28,7 +28,7 @@ public class Facture implements Serializable {
 	
 	private int numeroCommande;
 	private Date dateCommande;
-	enum modePaiement {CHEQUE, CB, ESPECE};
+	
 	private int numTVA;
 	private Date dateLivraison;
 	private float tauxR;
