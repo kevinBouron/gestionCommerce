@@ -14,4 +14,6 @@ public interface IUserService  {
 	User save(User p);
 	void delete(User p);
 	List<User> getAll();
+	
+	User findOneByLOgin(String login);
 }

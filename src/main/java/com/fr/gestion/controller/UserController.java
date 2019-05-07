@@ -46,4 +46,11 @@ public class UserController {
 	public List<User> getAll() {
 		return UserS.getAll();
 	}
+	
+//	@PostMapping("/login/{userName}")
+//	public User login(@PathVariable userName) {
+//
+//		return UserS.findOneByLOgin(login);
+//
+//	}
 }

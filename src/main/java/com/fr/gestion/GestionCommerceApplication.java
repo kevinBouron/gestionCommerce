@@ -57,8 +57,7 @@ public class GestionCommerceApplication {
 		System.out.println(fDao.CalculMontantTTC(f));
 		System.out.println(fDao.accompte(f));
 		System.out.println(fDao.Restedu(f));
-		fDao.reglement(r, 5L);
-		System.out.println(fDao.progression(f));
+
 		
 		System.out.println(fDao.findOneById(f.getCodeFacture()));
 }

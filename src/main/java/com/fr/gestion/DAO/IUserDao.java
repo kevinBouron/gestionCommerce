@@ -8,7 +8,7 @@ import com.fr.gestion.entities.User;
 @Repository
 public interface IUserDao extends JpaRepository<User, Long> {
 
-	
+	User findOneByUserName(String login);
 	
 }
 

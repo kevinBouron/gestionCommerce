@@ -38,6 +38,12 @@ public class UserService implements IUserService{
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
+
+	@Override
+	public User findOneByLOgin(String login) {
+		// TODO Auto-generated method stub
+		return dao.findOneByUserName(login);
+	}
 	
 	
 
