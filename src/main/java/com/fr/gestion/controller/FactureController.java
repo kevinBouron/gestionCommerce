@@ -22,67 +22,67 @@ public class FactureController {
 	
 	
 
-	@GetMapping("/api/get/{id}")
+	@GetMapping("/Facture/get/{id}")
 	public Facture findOneById(@PathVariable Long id) {
 
 		return factureS.findOneById(id);
 
 	}
 
-	@PostMapping("/api/save")
+	@PostMapping("/Facture/save")
 	public Facture save(@RequestBody Facture p) {
 
 		return factureS.save(p);
 
 	}
 
-	@DeleteMapping("/api/delete")
+	@DeleteMapping("/Facture/delete")
 	public void delete(@RequestBody Facture p) {
 
 		factureS.delete(p);
 	}
 
-	@GetMapping("/api/getall")
+	@GetMapping("/Facture/getall")
 	public List<Facture> getAll() {
 		return factureS.getAll();
 	}
 	
-	@PostMapping("/api/CalculMontantTVA/{id}")
+	@PostMapping("/Facture/CalculMontantTVA/{id}")
 	public float CalculMontantTVA(@PathVariable Long id) {
 		Facture f = findOneById(id);
 		return factureS.CalculMontantTVA(f);
 
 	}
 	
-	@PostMapping("/api/CalculMontantTTC/{id}")
+	@PostMapping("/Facture/CalculMontantTTC/{id}")
 	public float CalculMontantTTC(@PathVariable Long id) {
 		Facture f = findOneById(id);
 		return factureS.CalculMontantTTC(f);
 
 	}
 	
-	@PostMapping("/api/MontantRemise/{id}")
+	@PostMapping("/Facture/MontantRemise/{id}")
 	public float MontantRemise(@PathVariable Long id) {
 		Facture f = findOneById(id);
 		return factureS.MontantRemise(f);
 
 	}
 	
-	@PostMapping("/api/Restedu/{id}")
+	@PostMapping("/Facture/Restedu/{id}")
 	public float Restedu(@PathVariable Long id) {
 		Facture f = findOneById(id);
 		return factureS.Restedu(f);
 
 	}
 	
-	@PostMapping("/api/CalculBaseHT/{id}")
+	@PostMapping("/Facture/CalculBaseHT/{id}")
 	public float CalculBaseHT(@PathVariable Long id) {
 		Facture f = findOneById(id);
 		return factureS.CalculBaseHT(f);
 
 	}
 	
-	@PostMapping("/api/accompte/{id}")
+	@PostMapping("/Facture/accompte/{id}")
 	public float accompte(@PathVariable Long id) {
 		Facture f = findOneById(id);
 		return factureS.accompte(f);

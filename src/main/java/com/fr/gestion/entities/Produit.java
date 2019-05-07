@@ -22,5 +22,6 @@ public class Produit implements Serializable{
 	private String fabricant;
 	private String couleur;
 	private float prix;
+	private int qtite;
 
 }

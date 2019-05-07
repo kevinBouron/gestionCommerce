@@ -13,6 +13,7 @@ public interface IFactureService {
 	float Restedu(Facture f);
 	float MontantRemise(Facture f);
 	float accompte(Facture f);
+	float totalHT(Facture f);
 	
 	Facture findOneById(Long id);
 	Facture save(Facture p);

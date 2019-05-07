@@ -1,12 +1,14 @@
 package com.fr.gestion.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,9 +31,9 @@ public class Commande {
 	private String faconnier;
 	private String societe;
 	private String receptionneur;
-	private int quantiteCommande;
+//	private int quantiteCommande;
 	
 
-	@ManyToOne
-	private List<Produit> produits;
+	@OneToMany
+	private List<Produit> produits = new ArrayList<Produit>();
 }
