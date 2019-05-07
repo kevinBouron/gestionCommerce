@@ -3,6 +3,7 @@ package com.fr.gestion.services;
 import java.util.List;
 
 import com.fr.gestion.entities.Facture;
+import com.fr.gestion.entities.Reglement;
 
 public interface IFactureService {
 
@@ -20,5 +21,6 @@ public interface IFactureService {
 	void delete(Facture p);
 	List<Facture> getAll();
 
-
+	float reglement(Reglement r, Long id);
+	float progression(Facture f);
 }

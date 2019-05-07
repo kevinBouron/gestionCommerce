@@ -3,11 +3,14 @@ package com.fr.gestion.entities;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -41,11 +44,14 @@ public class Facture implements Serializable {
 	private float montantTVA;
 	private float montantTTC;
 	private float accompte;
-	
+	private float progression;
 	private Date dateecheance;
 	private float montantecheance;
 	private float restedu;
 	
 	@OneToOne
 	private Commande commande;
+	
+	@OneToMany
+	private List<Reglement> regs = new ArrayList<Reglement>();
 }

@@ -13,7 +13,9 @@ import com.fr.gestion.DAO.IProduitDao;
 import com.fr.gestion.entities.Commande;
 import com.fr.gestion.entities.Facture;
 import com.fr.gestion.entities.Produit;
+import com.fr.gestion.entities.Reglement;
 import com.fr.gestion.services.IFactureService;
+import com.fr.gestion.services.IReglementService;
 
 @SpringBootApplication
 public class GestionCommerceApplication {
@@ -24,10 +26,10 @@ public class GestionCommerceApplication {
 		
 		ICommandeDao cDao = ctx.getBean(com.fr.gestion.DAO.ICommandeDao.class);
 		IFactureService fDao = ctx.getBean(com.fr.gestion.services.IFactureService.class);
-		
-		Produit p1 = new Produit(null,"modele1","fab","bleu",50,3);
+		IReglementService rDao = ctx.getBean(com.fr.gestion.services.IReglementService.class);
+		Produit p1 = new Produit(null,"modele1","fab","bleu",null,50,3);
 		produitDao.save(p1);
-		Produit p2 = new Produit(null,"modele2","fab","rouge",40,3);
+		Produit p2 = new Produit(null,"modele2","fab","rouge",null,40,3);
 		produitDao.save(p2);
 		
 		List<Produit> list = new ArrayList<Produit>();
@@ -41,7 +43,12 @@ public class GestionCommerceApplication {
 		f.setCommande(c);
 		f.setFraisdeport(20);
 		f.setTauxR(5);
+		Reglement r =new Reglement(null, null, 23, 0);
+		f.getRegs().add(r);
+		rDao.save(r);
 		fDao.save(f);
+		
+		
 		System.out.println(f.getCommande().getProduits());
 		System.out.println(fDao.CalculBaseHT(f));
 		System.out.println(fDao.MontantRemise(f));
@@ -50,10 +57,10 @@ public class GestionCommerceApplication {
 		System.out.println(fDao.CalculMontantTTC(f));
 		System.out.println(fDao.accompte(f));
 		System.out.println(fDao.Restedu(f));
-
-	
+		fDao.reglement(r, 5L);
+		System.out.println(fDao.progression(f));
 		
-
-	}
+		System.out.println(fDao.findOneById(f.getCodeFacture()));
+}
 
 }

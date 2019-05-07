@@ -8,10 +8,10 @@ import com.fr.gestion.entities.Reglement;
 
 public interface IReglementService {
 
-	Client findOneById(Long id);
-	Client save(Client p);
-	void delete(Client p);
-	List<Client> getAll();
+	Reglement findOneById(Long id);
+	Reglement save(Reglement p);
+	void delete(Reglement p);
+	List<Reglement> getAll();
 	
-	void reglement(Reglement r);
+
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.fr.gestion.entities.Facture;
+import com.fr.gestion.entities.Reglement;
 import com.fr.gestion.services.IFactureService;
 
 @RestController
@@ -89,5 +90,18 @@ public class FactureController {
 
 	}
 	
+	@PostMapping("/Facture/progression")
+	public float progression(@RequestBody Facture p) {
+
+		return factureS.progression(p);
+
+	}
+	
+	@PostMapping("/Facture/reglement/{id}")
+	public float reglement(@RequestBody Reglement p,@PathVariable Long id) {
+
+		return factureS.reglement(p, id);
+
+	}
 	
 }

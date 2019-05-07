@@ -21,6 +21,7 @@ public class Produit implements Serializable{
 	private String modele;
 	private String fabricant;
 	private String couleur;
+	private String taille;
 	private float prix;
 	private int qtite;
 

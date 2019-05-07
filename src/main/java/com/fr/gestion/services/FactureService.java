@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fr.gestion.DAO.ICommandeDao;
 import com.fr.gestion.DAO.IFactureDao;
+import com.fr.gestion.entities.Commande;
 import com.fr.gestion.entities.Facture;
 import com.fr.gestion.entities.Produit;
+import com.fr.gestion.entities.Reglement;
 
 
 @Service
@@ -17,11 +20,13 @@ public class FactureService implements IFactureService {
 	@Autowired
 	private IFactureDao factureDao;
 
+	@Autowired
+	private ICommandeDao cDao;
 	@Override
 	public float CalculMontantTVA(Facture f) {
 		
 		float taux = 0.2f;
-		float montantTVA= totalHT(f)*taux;
+		float montantTVA= f.getTotalHT()*taux;
 		f.setMontantTVA(montantTVA);
 		return montantTVA;
 		
@@ -30,7 +35,7 @@ public class FactureService implements IFactureService {
 	@Override
 	public float CalculMontantTTC(Facture f) {
 		// TODO Auto-generated method stub
-		float TTC= totalHT(f)+CalculMontantTVA(f);
+		float TTC= f.getTotalHT()+f.getMontantTVA();
 		f.setMontantTTC(TTC);
 		return TTC;
 	}
@@ -52,7 +57,7 @@ public class FactureService implements IFactureService {
 	@Override
 	public float Restedu(Facture f) {
 		// TODO Auto-generated method stub
-		float reste= CalculMontantTTC(f) - accompte(f);
+		float reste= f.getMontantTTC() - f.getAccompte();
 		f.setRestedu(reste);
 		return reste;
 	}
@@ -61,7 +66,7 @@ public class FactureService implements IFactureService {
 	public float MontantRemise(Facture f) {
 		// TODO Auto-generated method stub
 		float tauxRemise= f.getTauxR()/100; // pourcentage de remise
-		float prixRemis = CalculBaseHT(f)*tauxRemise; // la remise 
+		float prixRemis = f.getBaseHT()*tauxRemise; // la remise 
 
 
 		f.setRemise(prixRemis);
@@ -71,7 +76,7 @@ public class FactureService implements IFactureService {
 	@Override
 	public float totalHT(Facture f) {
 		// TODO Auto-generated method stub
-		float totalHT =  CalculBaseHT(f)-MontantRemise(f) + f.getFraisdeport();
+		float totalHT =  f.getBaseHT()-f.getRemise() + f.getFraisdeport();
 		f.setTotalHT(totalHT);
 		return totalHT;
 	}
@@ -80,7 +85,7 @@ public class FactureService implements IFactureService {
 	public float accompte(Facture f) {
 		// TODO Auto-generated method stub
 		float tauxAccompte= 0.4f; // pourcentage accompte
-		float accompte= CalculMontantTTC(f)*tauxAccompte;
+		float accompte= f.getMontantTTC()*tauxAccompte;
 		f.setAccompte(accompte);
 		return accompte;
 	}
@@ -110,7 +115,33 @@ public class FactureService implements IFactureService {
 	}
 
 
+
+
+	@Override
+	public float progression(Facture f) {
 	
+		
+		float montantTTC =f.getMontantTTC();
+		float Rest= f.getRestedu();
+		float progression= Rest*100/montantTTC;
+		return progression;
+	}
+
+
+
+	@Override
+	public float reglement(Reglement r, Long id ) {
+		// TODO Auto-generated method stub
+		Facture f = factureDao.getOne(id);
+		f.getRegs().add(r);
+		float rest= f.getRestedu() - r.getMontant();
+		f.setRestedu(rest);
+		return rest;
+	}
+
+
+
+
 
 	
 

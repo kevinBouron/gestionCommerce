@@ -35,5 +35,5 @@ public class Commande {
 	
 
 	@OneToMany
-	private List<Produit> produits = new ArrayList<Produit>();
+	private List<Produit> produits  = new ArrayList<Produit>();
 }
