@@ -10,7 +10,7 @@ import com.fr.gestion.entities.Client;
 @Repository
 public interface IClientDao extends JpaRepository<Client, Long> {
 
-	Client update(Client client);
+
 	
 	
 	
