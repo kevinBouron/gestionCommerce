@@ -23,4 +23,5 @@ public interface IFactureService {
 
 	float reglement(Reglement r, Long id);
 	float progression(Facture f);
+	public Facture saveF(Facture f ,Long id);
 }

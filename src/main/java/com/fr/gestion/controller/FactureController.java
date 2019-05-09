@@ -105,5 +105,11 @@ public class FactureController {
 		return factureS.reglement(p, id);
 
 	}
-	
+
+	@PostMapping("/Facture/saveF")
+	public Facture saveF(@RequestBody Facture p,Long id) {
+
+		return factureS.saveF(p, id);
+
+	}
 }

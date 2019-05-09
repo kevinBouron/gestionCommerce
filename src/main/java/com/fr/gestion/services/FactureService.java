@@ -20,6 +20,7 @@ public class FactureService implements IFactureService {
 	@Autowired
 	private IFactureDao factureDao;
 
+
 	@Autowired
 	private ICommandeDao cDao;
 	@Override
@@ -28,6 +29,7 @@ public class FactureService implements IFactureService {
 		float taux = 0.2f;
 		float montantTVA= f.getTotalHT()*taux;
 		f.setMontantTVA(montantTVA);
+		factureDao.save(f);
 		return montantTVA;
 		
 	}
@@ -37,6 +39,7 @@ public class FactureService implements IFactureService {
 		// TODO Auto-generated method stub
 		float TTC= f.getTotalHT()+f.getMontantTVA();
 		f.setMontantTTC(TTC);
+		factureDao.save(f);
 		return TTC;
 	}
 
@@ -49,6 +52,7 @@ public class FactureService implements IFactureService {
 			 prixHT =prixHT + p.getPrix()*p.getQtite();
 		 }
 		 f.setBaseHT(prixHT);
+		 factureDao.save(f);
 		 return prixHT;
 		 
 
@@ -70,6 +74,7 @@ public class FactureService implements IFactureService {
 
 
 		f.setRemise(prixRemis);
+		factureDao.save(f);
 		return prixRemis;
 	}
 	
@@ -78,6 +83,7 @@ public class FactureService implements IFactureService {
 		// TODO Auto-generated method stub
 		float totalHT =  f.getBaseHT()-f.getRemise() + f.getFraisdeport();
 		f.setTotalHT(totalHT);
+		factureDao.save(f);
 		return totalHT;
 	}
 
@@ -87,6 +93,7 @@ public class FactureService implements IFactureService {
 		float tauxAccompte= 0.4f; // pourcentage accompte
 		float accompte= f.getMontantTTC()*tauxAccompte;
 		f.setAccompte(accompte);
+		factureDao.save(f);
 		return accompte;
 	}
 
@@ -124,6 +131,7 @@ public class FactureService implements IFactureService {
 		float montantTTC =f.getMontantTTC();
 		float Rest= f.getRestedu();
 		float progression= Rest*100/montantTTC;
+	
 		return progression;
 	}
 
@@ -136,7 +144,16 @@ public class FactureService implements IFactureService {
 		f.getRegs().add(r);
 		float rest= f.getRestedu() - r.getMontant();
 		f.setRestedu(rest);
+		factureDao.save(f);
 		return rest;
+	}
+	
+	public Facture saveF(Facture f ,Long id) {
+		Commande c = cDao.getOne(id);
+		f.setCommande(c);
+		factureDao.save(f);
+		return f;
+		
 	}
 
 
